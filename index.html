@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Legal Counsel Landing Page</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:wght@700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1754cf",
+            "navy-dark": "#0a192f",
+            "maroon-accent": "#800000",
+            "background-light": "#f8f9fc",
+            "background-dark": "#111621",
+          },
+          fontFamily: {
+            "display": ["Public Sans", "sans-serif"],
+            "serif": ["Playfair Display", "serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-display {
+      font-family: 'Public Sans', sans-serif;
+    }
+  </style>
+  <style type="text/tailwindcss">
+
+    @layer base {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+    @layer components {
+      .form-input {
+        @apply block w-full rounded-lg border-slate-300 bg-white px-4 py-3 text-sm focus:border-primary focus:ring-primary dark:border-slate-700 dark:bg-slate-900 dark:text-white;
+      }
+
+      .form-label {
+        @apply mb-2 block text-sm font-semibold text-navy-dark dark:text-slate-300;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+  <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+    <!-- Navigation Bar -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-solid border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-background-dark/80 px-4 md:px-20 lg:px-40 py-3">
+      <div class="mx-auto flex max-w-[1200px] items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="text-primary">
+            <span class="material-symbols-outlined text-3xl font-bold">balance</span>
+          </div>
+          <h2 class="text-xl font-bold tracking-tight text-navy-dark dark:text-white">LegalCounsel</h2>
+        </div>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-sm font-semibold hover:text-primary transition-colors" href="#service">Services</a>
+          <a class="text-sm font-semibold hover:text-primary transition-colors" href="#about">About</a>
+          <a class="text-sm font-semibold hover:text-primary transition-colors" href="#blog">Blog</a>
+          <a class="text-sm font-semibold hover:text-primary transition-colors" href="#contact">Contact</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn"
+          class="md:hidden flex items-center justify-center rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+        
+        <div class="flex items-center gap-4 hidden md:block">
+          <button onclick="window.location.href='/login.html'"
+            class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold tracking-wide hover:bg-blue-700 transition-all">
+            Login
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu"
+          class="fixed inset-x-0 top-[64px] z-40 hidden flex-col bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 shadow-lg md:hidden">
+
+          <nav class="flex flex-col divide-y divide-slate-200 dark:divide-slate-800">
+            <a onclick="closeMobileMenu()" class="px-6 py-4 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800"
+              href="#service">Services</a>
+            <a onclick="closeMobileMenu()" class="px-6 py-4 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800"
+              href="#about">About</a>
+            <a onclick="closeMobileMenu()" class="px-6 py-4 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800"
+              href="#blog">Blog</a>
+            <a onclick="closeMobileMenu()" class="px-6 py-4 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800"
+              href="#contact">Contact</a>
+
+            <div class="p-4">
+              <button onclick="window.location.href='/login.html'"
+                class="w-full h-11 bg-primary text-white font-bold rounded-lg">
+                Login
+              </button>
+            </div>
+          </nav>
+        </div>
+    <main class="flex-1">
+      <!-- Hero Section -->
+      <section class="mx-auto max-w-[1200px] px-4 md:px-10 py-16 lg:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="flex flex-col gap-8">
+            <div class="space-y-4">
+              <h1 class="font-serif text-5xl md:text-6xl font-extrabold leading-[1.1] text-navy-dark dark:text-white">
+                Professional <span class="text-primary">Legal Counsel</span> You Can Trust
+              </h1>
+              <p class="text-lg text-slate-600 dark:text-slate-400 max-w-[500px] leading-relaxed">
+                Expert online consultation and document preparation at your fingertips. Get the high-tier legal support
+                you need for your business and personal matters today.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <button
+                class="h-14 px-8 bg-navy-dark dark:bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-all flex items-center justify-center">
+                Request Legal Counsel
+              </button>
+              <button
+                class="h-14 px-8 border-2 border-navy-dark dark:border-slate-700 text-navy-dark dark:text-white font-bold rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all flex items-center justify-center">
+                Explore Services
+              </button>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-slate-200">
+              <div class="w-full h-full bg-cover bg-center" data-alt="Modern law office interior with books and desk"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAvhCG7LnSvSQ8TogO1UMj2c4jMGodTn6sNNMUPoVxhIiW7xwEAzy2qlG6BVYzFuVm-JWIEalWSIyiO49epLWRPvDRE8TTHcn-dT3NHNs0GrHo8bSzznpPlI7p3FjokMvlDTiM4pSQikvrxpRHV3V-zlvQgKUhuZmly8KeXso0o7hZvuVPW1dggXRfSh5R3EC_Z2I3ecN4qqU5PicUXFVbn4NTTZqhstiHXq4Ucy8EGUrmJl8WTOM61c4Z0Ubyw9R8ho7XVbcJ0vhY')">
+              </div>
+            </div>
+            <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-6 rounded-xl shadow-xl hidden md:block">
+              <div class="flex items-center gap-4">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <span class="material-symbols-outlined text-3xl">verified</span>
+                </div>
+                <div>
+                  <p class="text-2xl font-bold text-navy-dark dark:text-white">98%</p>
+                  <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Success Rate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Stat Bar -->
+      <section class="bg-navy-dark py-12">
+        <div class="mx-auto max-w-[1200px] px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <p class="text-4xl font-bold text-white mb-1">15+</p>
+            <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Years Experience</p>
+          </div>
+          <div>
+            <p class="text-4xl font-bold text-white mb-1">5k+</p>
+            <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Cases Resolved</p>
+          </div>
+          <div>
+            <p class="text-4xl font-bold text-white mb-1">100%</p>
+            <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Confidentiality</p>
+          </div>
+          <div>
+            <p class="text-4xl font-bold text-white mb-1">24/7</p>
+            <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Legal Support</p>
+          </div>
+        </div>
+      </section>
+      <!-- Services Grid -->
+      <section id="service" class="mx-auto max-w-[1200px] px-4 py-24">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-4xl font-bold text-navy-dark dark:text-white mb-4">Our Specializations</h2>
+          <p class="text-slate-500 max-w-2xl mx-auto">Providing comprehensive legal solutions across multiple
+            jurisdictions with precision and integrity.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service Card 1 -->
+          <div
+            class="group p-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary transition-all shadow-sm hover:shadow-xl">
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+              <span class="material-symbols-outlined text-3xl">corporate_fare</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Corporate Law</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Strategic business formation, mergers &amp;
+              acquisitions, and governance compliance for global entities.</p>
+            <a class="text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+              Request Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <!-- Service Card 2 -->
+          <div
+            class="group p-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary transition-all shadow-sm hover:shadow-xl">
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+              <span class="material-symbols-outlined text-3xl">domain</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Property Law</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Expert guidance in real estate transactions, leasing,
+              zoning regulations, and property disputes.</p>
+            <a class="text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+              Request Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <!-- Service Card 3 -->
+          <div
+            class="group p-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary transition-all shadow-sm hover:shadow-xl">
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+              <span class="material-symbols-outlined text-3xl">gavel</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Criminal Defense</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Rigorous defense strategies and representation for
+              complex criminal matters and white-collar crimes.</p>
+            <a class="text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+              Request Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <!-- Service Card 4 -->
+          <div
+            class="group p-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary transition-all shadow-sm hover:shadow-xl">
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+              <span class="material-symbols-outlined text-3xl">family_restroom</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Family Law</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Compassionate mediation and litigation for divorce,
+              custody, and estate planning with total discretion.</p>
+            <a class="text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+              Request Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <!-- Service Card 5 -->
+          <div
+            class="group p-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary transition-all shadow-sm hover:shadow-xl">
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+              <span class="material-symbols-outlined text-3xl">lightbulb</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Intellectual Property</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Protecting your innovations through patents,
+              trademarks, and copyright registration and enforcement.</p>
+            <a class="text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+              Request Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <!-- Service Card 6 -->
+          <div
+            class="group p-8 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary transition-all shadow-sm hover:shadow-xl">
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+              <span class="material-symbols-outlined text-3xl">work</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Employment Law</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Workplace rights, contract negotiations, and
+              litigation for both employers and executive employees.</p>
+            <a class="text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+              Request Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- How It Works -->
+      <section class="bg-slate-50 dark:bg-background-dark py-24 border-y border-slate-200 dark:border-slate-800">
+        <div class="mx-auto max-w-[1200px] px-4">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-navy-dark dark:text-white mb-4">A Streamlined Process</h2>
+            <p class="text-slate-500">Getting expert legal help has never been easier.</p>
+          </div>
+          <div class="relative flex flex-col md:flex-row gap-8 justify-between">
+            <!-- Connecting Line (Desktop) -->
+            <div
+              class="absolute top-1/2 left-0 w-full h-px bg-slate-300 dark:bg-slate-700 -translate-y-1/2 hidden md:block">
+            </div>
+            <!-- Step 1 -->
+            <div class="relative z-10 flex flex-col items-center text-center bg-slate-50 dark:bg-background-dark px-4">
+              <div
+                class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg mb-6 shadow-lg shadow-primary/30">
+                1</div>
+              <h4 class="font-bold mb-2">Consultation</h4>
+              <p class="text-xs text-slate-500 max-w-[150px]">Book a secure online meeting with our specialists.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="relative z-10 flex flex-col items-center text-center bg-slate-50 dark:bg-background-dark px-4">
+              <div
+                class="w-12 h-12 rounded-full bg-white dark:bg-slate-800 text-primary border-2 border-primary flex items-center justify-center font-bold text-lg mb-6 shadow-lg">
+                2</div>
+              <h4 class="font-bold mb-2">Strategy</h4>
+              <p class="text-xs text-slate-500 max-w-[150px]">We develop a custom legal path tailored to your goals.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="relative z-10 flex flex-col items-center text-center bg-slate-50 dark:bg-background-dark px-4">
+              <div
+                class="w-12 h-12 rounded-full bg-white dark:bg-slate-800 text-primary border-2 border-primary flex items-center justify-center font-bold text-lg mb-6 shadow-lg">
+                3</div>
+              <h4 class="font-bold mb-2">Preparation</h4>
+              <p class="text-xs text-slate-500 max-w-[150px]">Accurate documentation and filing handled by experts.</p>
+            </div>
+            <!-- Step 4 -->
+            <div class="relative z-10 flex flex-col items-center text-center bg-slate-50 dark:bg-background-dark px-4">
+              <div
+                class="w-12 h-12 rounded-full bg-white dark:bg-slate-800 text-primary border-2 border-primary flex items-center justify-center font-bold text-lg mb-6 shadow-lg">
+                4</div>
+              <h4 class="font-bold mb-2">Resolution</h4>
+              <p class="text-xs text-slate-500 max-w-[150px]">Proactive representation to achieve your outcome.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Testimonials -->
+      <section id="about" class="mx-auto max-w-[1200px] px-4 py-24">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-4xl font-bold text-navy-dark dark:text-white mb-4">Client Testimonials</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-8 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div class="text-yellow-500 flex gap-1 mb-4">
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 italic mb-6">"The corporate team was instrumental during our
+              Series B funding. Their attention to detail is unmatched in the industry."</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-slate-200 bg-cover" data-alt="CEO Portrait"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgFKrIIjmqOhZyBOM2ISwhhnOnM4K7Q8LK46Tba7fWOvBlSSKEBOUtTAGubQohpvwwD8XQt3QT2Kgb_P6bfZVloSy2d9I9K0KRgOZDCCOuVja1IFSEMOkPC1CSIljn0LJHlL09OjgmvI9QTzn5iDRR7LgzLTuPnxnDdsGjFcNqSwg2pmYH_h4pDoaoBFbhcnrPiOSroCRjmIC9e5tg0qcI0JPIHoiTOvxjFX_95p-BHkQTGAOscPUsi9fJlisJCIP_qxKLCG5CZhRy')">
+              </div>
+              <div>
+                <p class="font-bold text-sm">David Chen</p>
+                <p class="text-xs text-slate-500 uppercase tracking-tighter">CEO, TechFlow Inc.</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-8 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div class="text-yellow-500 flex gap-1 mb-4">
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 italic mb-6">"Compassionate and firm. They handled my family
+              property dispute with incredible tact and reached a settlement quickly."</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-slate-200 bg-cover" data-alt="Female Professional Portrait"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTqYsWd2myBr2adTAGx8UJYBoIhbvH99t8UpQ0MrEvprJjCTey7tim5piEwUQXx1UCTNasAAXzy9jr71McOjp2iIOrvdEJT3TEZMFTQ1GhSF2jzd8sVezkwVp4SojGp695WIZZDlWxqb3t48kAOl99zr0NWw_wCKJu7HG3oVda01ZTq46MCQ2vuMBaRsRDaNdZ-UaRV5IQjETBqZfpmvzuX3kPW0YkP-r8b2Bds1-QpTJB0Qn9xNqKvOmlg2NXNlTIf16dtabcdTdt')">
+              </div>
+              <div>
+                <p class="font-bold text-sm">Sarah Jenkins</p>
+                <p class="text-xs text-slate-500 uppercase tracking-tighter">Private Client</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-8 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div class="text-yellow-500 flex gap-1 mb-4">
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+              <span class="material-symbols-outlined fill-1">star</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 italic mb-6">"Modern approach to law. The online portal made
+              document signing and meetings seamless despite the distance."</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-slate-200 bg-cover" data-alt="Male Client Portrait"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA78FHarT_q6s4EQ5DLNSKDvvJIb4HAriaIkfUgSHkarU4uvnZxGEJJ6pJLVjgch8cH1WrQN5diyy3llWrWw9FlkpafFzsCiAwHfIvUWiuWgZYa5uSf25H72VaiYyTnbUPVnw7HwUJGhLd25JBOmuvb1QF2EBjCu44IkdxhfyKAL8vGtXzwgbwv-J9CTIusGH-EpzpZF1ZJAurzWGLfnxx__TECC1eVPlG7PCKdwroOjix-NqUFFj-2CWrEW1desXUbFtHP1sQMKZLt')">
+              </div>
+              <div>
+                <p class="font-bold text-sm">Marcus Thorne</p>
+                <p class="text-xs text-slate-500 uppercase tracking-tighter">Founder, Peak Logic</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Blog Preview -->
+      <section id="blog" class="bg-white dark:bg-background-dark py-24 border-t border-slate-100 dark:border-slate-900">
+        <div class="mx-auto max-w-[1200px] px-4">
+          <div class="flex justify-between items-end mb-12">
+            <div>
+              <h2 class="font-serif text-4xl font-bold text-navy-dark dark:text-white mb-2">Legal Insights</h2>
+              <p class="text-slate-500">Stay informed with the latest legal trends and news.</p>
+            </div>
+            <button class="text-primary font-bold flex items-center gap-2 hover:underline transition-all">
+              View All Articles <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group cursor-pointer">
+              <div class="aspect-video rounded-xl overflow-hidden mb-4 shadow-lg">
+                <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                  data-alt="Legal documents and eyeglasses on desk"
+                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-6cjG3eCJtbjoPMFjNOBbUQGiyhcCEpfEc6SP-bSnVm3wXAaTuQZhohZU664uTvPowyEVTpk-JiExc6fil0qgF_q-mXsA_7GWQgKaYiY0U7uwYBm9dSOg-PdZnSzEndKtGffGg7Zitmaz9bVBlQaDqnUzp901VYhyXnQUadD5gyBnSWEhP-gE4fA4JQ2P6cT_YPtTvzPwp2Ec6KuzcIjXJ158608Ws2Uwpd-szSDZsOgmD8PPzm1mGV_7iiDToGOckY3Mnxezkbiw')">
+                </div>
+              </div>
+              <p class="text-xs text-primary font-bold uppercase tracking-widest mb-2">Corporate Regulation</p>
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">Navigating New 2024
+                Corporate Tax Compliance</h3>
+              <p class="text-sm text-slate-500 line-clamp-2">How current tax law shifts affect small to medium
+                enterprises in the next fiscal year.</p>
+            </div>
+            <div class="group cursor-pointer">
+              <div class="aspect-video rounded-xl overflow-hidden mb-4 shadow-lg">
+                <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                  data-alt="Two people shaking hands over a contract"
+                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlXGuUzN19Ug5UZqY_EfHzZ0YJD6XJaBqFe0_zJzPhkSAPqrj7BbvLvWsjuFez4fmxCb8I9QO0sks3A7ahiiMFyOFkcqaBL-09pmAAuw4faXubPS15gi0vq03uL9wrbWEH2IDYopmEz-678CX_jgLuLFK8LiEsioVGYpXa-p_smIj6Kl8dcnzR7LGqTFRrB7D0xu58GrmYluu_0asq7NbMgZcaBYHbWmOwoJhMFAgSaW5gpygazuKHbx3nYPV1UaQ7-mF43Ohe4Kxx')">
+                </div>
+              </div>
+              <p class="text-xs text-primary font-bold uppercase tracking-widest mb-2">Family Law</p>
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">Essential Estate Planning
+                for Young Professionals</h3>
+              <p class="text-sm text-slate-500 line-clamp-2">Protecting your digital assets and property inheritance
+                through modern estate frameworks.</p>
+            </div>
+            <div class="group cursor-pointer">
+              <div class="aspect-video rounded-xl overflow-hidden mb-4 shadow-lg">
+                <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                  data-alt="Holographic shield representing IP protection"
+                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA04ugp12-Ka3zJXIqL8FZdenVIxJW7Uw8-mqFbFFE2mbQPhhXOLHgX0UK7d92TalfruK2T6icOQVLd5vPaLndE1z-RXPFOvCZAqM75z4bCx9rITUuEnhERfnbj2CbF3p-43U7mUdya_JtmSAvQX5KX577SLlGKmjA2L0T0obi4xXwp6JCZ6zG23eO4rXzyj_-X0QAYcgs8ckOu4D-UOSExH0Ld6cgFUjgoxp3mC10vKbqirMSAVZZnhjgXg80PbRgwUYZka_crWaeT')">
+                </div>
+              </div>
+              <p class="text-xs text-primary font-bold uppercase tracking-widest mb-2">Intellectual Property</p>
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">AI &amp; Intellectual
+                Property: The New Frontier</h3>
+              <p class="text-sm text-slate-500 line-clamp-2">Understanding copyright implications when using generative
+                AI in your creative workflow.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="flex-1">
+        <section class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+          <div class="mx-auto max-w-[1200px] px-4 py-16 text-center">
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-navy-dark dark:text-white mb-4">Contact
+              &amp; Service Request</h1>
+            <p class="text-slate-500 max-w-2xl mx-auto text-lg">Connect with our elite legal team or initiate a
+              formal service request for your case.</p>
+          </div>
+        </section>
+        <section class="mx-auto max-w-[1200px] px-4 py-16">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-5 space-y-10">
+              <div>
+                <h2 class="font-serif text-3xl font-bold text-navy-dark dark:text-white mb-6">Get in Touch
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                  Our firm is committed to providing prompt and professional legal assistance. Visit our
+                  office or reach out via phone for urgent matters.
+                </p>
+              </div>
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <span class="material-symbols-outlined">location_on</span>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-navy-dark dark:text-white">Headquarters</h3>
+                    <p class="text-sm text-slate-500">101 Legal Plaza, Suite 400<br />San Francisco, CA
+                      94105</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <span class="material-symbols-outlined">call</span>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-navy-dark dark:text-white">Phone Support</h3>
+                    <p class="text-sm text-slate-500">Main: +1 (800) 555-0199<br />Local: +1 (415)
+                      555-0123</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <span class="material-symbols-outlined">mail</span>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-navy-dark dark:text-white">Email Inquiries</h3>
+                    <p class="text-sm text-slate-500">
+                      support@legalcounsel.com<br />intake@legalcounsel.com</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 aspect-video shadow-sm">
+                <div class="absolute inset-0 bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                  <div class="text-center p-6">
+                    <span class="material-symbols-outlined text-4xl text-slate-400 mb-2">map</span>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Interactive
+                      Office Map</p>
+                  </div>
+                </div>
+                <div class="w-full h-full bg-cover bg-center"
+                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-6cjG3eCJtbjoPMFjNOBbUQGiyhcCEpfEc6SP-bSnVm3wXAaTuQZhohZU664uTvPowyEVTpk-JiExc6fil0qgF_q-mXsA_7GWQgKaYiY0U7uwYBm9dSOg-PdZnSzEndKtGffGg7Zitmaz9bVBlQaDqnUzp901VYhyXnQUadD5gyBnSWEhP-gE4fA4JQ2P6cT_YPtTvzPwp2Ec6KuzcIjXJ158608Ws2Uwpd-szSDZsOgmD8PPzm1mGV_7iiDToGOckY3Mnxezkbiw')">
+                </div>
+                <div class="absolute inset-0 bg-navy-dark/10"></div>
+              </div>
+            </div>
+            <div class="lg:col-span-7">
+              <div
+                class="rounded-2xl bg-white p-8 shadow-xl shadow-slate-200/50 dark:bg-slate-900 dark:shadow-none border border-slate-100 dark:border-slate-800">
+                <div class="mb-8 border-b border-slate-100 pb-6 dark:border-slate-800">
+                  <h2 class="font-serif text-2xl font-bold text-navy-dark dark:text-white">Service Request
+                    Form</h2>
+                  <p class="text-sm text-slate-500 mt-1">Please provide initial details regarding your
+                    legal requirements.</p>
+                </div>
+                <form class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label class="form-label" for="full_name">Full Name</label>
+                      <input class="form-input" id="full_name" placeholder="John Doe" required="" type="text" />
+                    </div>
+                    <div>
+                      <label class="form-label" for="email">Email Address</label>
+                      <input class="form-input" id="email" placeholder="john@example.com" required="" type="email" />
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label class="form-label" for="service_type">Service Type</label>
+                      <select class="form-input" id="service_type">
+                        <option>Corporate Law</option>
+                        <option>Property Law</option>
+                        <option>Criminal Defense</option>
+                        <option>Family Law</option>
+                        <option>Intellectual Property</option>
+                        <option>Employment Law</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="form-label" for="urgency">Urgency Level</label>
+                      <select class="form-input" id="urgency">
+                        <option>Low - General Inquiry</option>
+                        <option>Medium - Planning Stage</option>
+                        <option>High - Urgent Action Required</option>
+                        <option>Critical - Legal Emergency</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="form-label" for="message">Message / Case Brief</label>
+                    <textarea class="form-input min-h-[150px] resize-none" id="message"
+                      placeholder="Please provide a brief overview of your legal situation..."></textarea>
+                  </div>
+                  <div>
+                    <label class="form-label" for="file_upload">Initial Documents (Optional)</label>
+                    <div
+                      class="relative mt-1 flex justify-center rounded-lg border-2 border-dashed border-slate-300 px-6 py-10 transition-colors hover:border-primary dark:border-slate-700">
+                      <div class="text-center">
+                        <span class="material-symbols-outlined text-slate-400 text-4xl mb-2">cloud_upload</span>
+                        <div class="mt-4 flex text-sm leading-6 text-slate-600 dark:text-slate-400">
+                          <label
+                            class="relative cursor-pointer rounded-md font-semibold text-primary focus-within:outline-none hover:text-blue-700"
+                            for="file_upload">
+                            <span>Upload a file</span>
+                            <input class="sr-only" id="file_upload" name="file_upload" type="file" />
+                          </label>
+                          <p class="pl-1">or drag and drop</p>
+                        </div>
+                        <p class="text-xs leading-5 text-slate-500">PDF, DOCX, JPG up to 10MB</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-4">
+                    <button
+                      class="w-full h-14 bg-navy-dark dark:bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2"
+                      type="submit">
+                      Submit Request
+                      <span class="material-symbols-outlined text-sm">send</span>
+                    </button>
+                    <p class="text-center text-xs text-slate-400 mt-4">By submitting, you agree to our
+                      Terms of Service and Privacy Policy regarding client data intake.</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="bg-navy-dark py-12">
+          <div class="mx-auto max-w-[1200px] px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <p class="text-4xl font-bold text-white mb-1">15+</p>
+              <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Years Experience</p>
+            </div>
+            <div>
+              <p class="text-4xl font-bold text-white mb-1">5k+</p>
+              <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Cases Resolved</p>
+            </div>
+            <div>
+              <p class="text-4xl font-bold text-white mb-1">100%</p>
+              <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Confidentiality</p>
+            </div>
+            <div>
+              <p class="text-4xl font-bold text-white mb-1">24/7</p>
+              <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">Legal Support</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-navy-dark text-white pt-20 pb-10">
+      <div class="mx-auto max-w-[1200px] px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div class="space-y-6">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-3xl font-bold">balance</span>
+              <h2 class="text-xl font-bold tracking-tight">LegalCounsel</h2>
+            </div>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Providing elite legal representation and consultation globally. Our mission is to make professional legal
+              aid accessible and transparent.
+            </p>
+            <div class="flex gap-4">
+              <a class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all"
+                href="#">
+                <span class="material-symbols-outlined text-sm">share</span>
+              </a>
+              <a class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all"
+                href="#">
+                <span class="material-symbols-outlined text-sm">public</span>
+              </a>
+              <a class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all"
+                href="#">
+                <span class="material-symbols-outlined text-sm">group</span>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-bold mb-6 text-lg">Services</h4>
+            <ul class="space-y-4 text-slate-400 text-sm">
+              <li><a class="hover:text-white transition-colors" href="#">Corporate Strategy</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Property Litigation</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Criminal Defense</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Family Mediation</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">IP Protection</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-6 text-lg">Company</h4>
+            <ul class="space-y-4 text-slate-400 text-sm">
+              <li><a class="hover:text-white transition-colors" href="#">About Us</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Our Attorneys</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Legal Blog</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-6 text-lg">Contact Us</h4>
+            <ul class="space-y-4 text-slate-400 text-sm">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary text-sm mt-1">location_on</span>
+                101 Legal Plaza, Suite 400<br />San Francisco, CA 94105
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-sm">call</span>
+                +1 (800) 555-0199
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-sm">mail</span>
+                support@legalcounsel.com
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-slate-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p class="text-slate-500 text-xs">© 2024 LegalCounsel LLP. All rights reserved.</p>
+          <div class="flex gap-8 text-slate-500 text-xs">
+            <a class="hover:text-white" href="#">Terms of Service</a>
+            <a class="hover:text-white" href="#">Cookie Policy</a>
+            <a class="hover:text-white" href="#">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  function closeMobileMenu() {
+    mobileMenu.classList.add("hidden");
+  }
+
+  mobileMenuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Close menu on outside click
+  document.addEventListener("click", (e) => {
+    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+</script>
+
+</body>
+
+</html>

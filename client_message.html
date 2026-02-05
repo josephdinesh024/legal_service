@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Secure Client Messaging Hub - LexisPortal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1754cf",
+                        "navy-900": "#0a192f",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#111621",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chat-container {
+            height: calc(100vh - 64px);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#0e121b] dark:text-gray-100 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full
+         md:relative md:translate-x-0
+         border-r border-gray-200 dark:border-gray-800
+         bg-white dark:bg-[#1a202c]
+         flex flex-col transition-transform duration-300">
+            <div onclick="window.location.href='/index.html'" class=" cursor-pointer p-6 flex items-center gap-3">
+                <div class="text-primary">
+                    <span class="material-symbols-outlined text-3xl font-bold">balance</span>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight text-navy-dark dark:text-white">LegalCounsel</h2>
+            </div>
+            <nav class="flex-1 px-4 py-4 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    href="/client_dashboard.html">
+                    <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    <span class="text-sm">Dashboard</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    href="/client_document.html">
+                    <span class="material-symbols-outlined text-[20px]">description</span>
+                    <span class="text-sm">Documents</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    href="/client_invoice.html">
+                    <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                    <span class="text-sm">Invoices</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-semibold"
+                    href="/client_message.html">
+                    <span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+                    <span class="text-sm">Messages</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-800">
+                <div class="flex items-center gap-3 px-2 py-2">
+                    <div
+                        class="size-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs">
+                        SB</div>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-semibold truncate">Sarah Bennett</span>
+                        <span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Premium Client</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+
+        <!-- Sidebar Backdrop -->
+        <div id="sidebarBackdrop" class="fixed inset-0 bg-black/40 z-30 hidden md:hidden"></div>
+
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header
+                class="h-16 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a202c] md:px-6 flex items-center justify-between z-10">
+
+                <!-- Mobile Sidebar Toggle -->
+                <button id="sidebarToggle" class="md:hidden size-10 flex items-center justify-center rounded-lg
+                hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+
+                <div class="flex items-center gap-2">
+                    <h1 class="text-xl font-bold">Secure Messaging Hub</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-lg">calendar_today</span>
+                        <span>Schedule Meeting</span>
+                    </button>
+                </div>
+            </header>
+            <div class="flex flex-1 overflow-hidden">
+                <div
+                    class="w-80 md:w-96 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a202c] flex flex-col">
+                    <div class="p-4">
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">search</span>
+                            <input
+                                class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/50"
+                                placeholder="Filter conversations..." type="text" />
+                        </div>
+                    </div>
+                    <div class="flex-1 overflow-y-auto divide-y divide-gray-50 dark:divide-gray-800">
+                        <div
+                            class="p-4 flex gap-4 bg-primary/5 border-l-4 border-primary cursor-pointer hover:bg-primary/10 transition-colors">
+                            <img alt="Alex Rivera" class="size-11 rounded-full object-cover shrink-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxzm8QdcS4czoWbs_px1ItJUpRdlG_9Et4Y4PTwlHpPosa7gZX44mOZ1iVlyoTPkQ4xg7xWZZMJ63MAb_-4PZBb1xqqj-bx3AT9ZDF6Kt6VbaNgOy4Vz4_iugwVTkJS7Jg04fVLzxsyDyf8Mi0gg1u-swO0nghRNuMq7K-gQN5NWrcwitHhtxN6ZO2LOm6hIKKOYcsnJCCb01yl1kRkqMT0AnUo20vzyIhRPh1aDtA4l7rnD4rz--cLLwH-C-oyNKG0rvxv8iBuT-w" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <p class="text-sm font-bold truncate">Alex Rivera</p>
+                                    <span class="text-[10px] text-gray-400 font-bold uppercase">10:45 AM</span>
+                                </div>
+                                <p class="text-xs text-primary font-semibold mb-1 truncate">Intellectual Property Filing
+                                </p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 line-clamp-1 italic">I've updated the
+                                    filing documents for your review...</p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 flex gap-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                            <img alt="Jordan Smith" class="size-11 rounded-full object-cover shrink-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuByOfjjWYc3g3OqBRMSlzC64Ox42GGSHyslrlzrSQ25ZEsvKThrR1mtSlGGbACsdtPvfpgxjerLFDp7nu5jSk9lL3S1vgbtdIeF5MndSjbygOiUxu5vgaN-O00Cm-z8jd5dE7hbM8wseFMJEk6in2IjlAZZeZ14QBNEmvYsWW7as3uqqqw3bsDbsNTH7LTpkJuZ76BK1I4LwtuMQbA2nVd9BXVz58qE4fKVKJSzz5iO2nxAndaeiD-F_o9nwrUXQvpJz8gjlv-PdvHt" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <p class="text-sm font-bold truncate">Jordan Smith</p>
+                                    <span class="text-[10px] text-gray-400 font-bold uppercase">Yesterday</span>
+                                </div>
+                                <p class="text-xs text-gray-500 font-semibold mb-1 truncate">Employment Contract Audit
+                                </p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 line-clamp-1">Could you please upload
+                                    the latest payroll summary?</p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 flex gap-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                            <img alt="Maria Garcia" class="size-11 rounded-full object-cover shrink-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJSjeFvbuNHAPIc7ZGJRs_QALtEgArg-S2kN0gxK_Hj-wyYqvAcQc7T6wPwesRMbvgbFifV-l72_Kng8pGXSGejXj-4Egx_TlxwM48CWnkqqTrucnWPPGJY96wH_RB2lrNBAWxQ7pOiRYGDTXsWpMwRUkj33Rha9uBw2w4wwxvH0gjbXFIkPJLlN4ObGqYPk4S-xiItTzoQPNC5u_rsIBjCrXo4CknFggrbd0jcU9flidGQUl0BarQnkSM3X3FHjoelZvaffuLzikH" />
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <p class="text-sm font-bold truncate">Maria Garcia</p>
+                                    <span class="text-[10px] text-gray-400 font-bold uppercase">Nov 12</span>
+                                </div>
+                                <p class="text-xs text-gray-500 font-semibold mb-1 truncate">Trademark Registration</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 line-clamp-1">The application has
+                                    been submitted to the USPTO.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 flex flex-col bg-background-light dark:bg-background-dark">
+                    <div
+                        class="h-16 px-6 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-[#1a202c]/80 backdrop-blur-sm flex items-center justify-between sticky top-0">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <img alt="Alex Rivera" class="size-10 rounded-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxzm8QdcS4czoWbs_px1ItJUpRdlG_9Et4Y4PTwlHpPosa7gZX44mOZ1iVlyoTPkQ4xg7xWZZMJ63MAb_-4PZBb1xqqj-bx3AT9ZDF6Kt6VbaNgOy4Vz4_iugwVTkJS7Jg04fVLzxsyDyf8Mi0gg1u-swO0nghRNuMq7K-gQN5NWrcwitHhtxN6ZO2LOm6hIKKOYcsnJCCb01yl1kRkqMT0AnUo20vzyIhRPh1aDtA4l7rnD4rz--cLLwH-C-oyNKG0rvxv8iBuT-w" />
+                                <span
+                                    class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold leading-none mb-1">Alex Rivera</p>
+                                <p class="text-[11px] text-gray-500 font-medium">Intellectual Property Filing • Active
+                                    Matter</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="p-2 text-gray-400 hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">phone</span>
+                            </button>
+                            <button class="p-2 text-gray-400 hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">info</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800"></div>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Today</span>
+                            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800"></div>
+                        </div>
+                        <div class="flex gap-3 max-w-[80%]">
+                            <img alt="Alex Rivera" class="size-8 rounded-full object-cover mt-1 shrink-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxzm8QdcS4czoWbs_px1ItJUpRdlG_9Et4Y4PTwlHpPosa7gZX44mOZ1iVlyoTPkQ4xg7xWZZMJ63MAb_-4PZBb1xqqj-bx3AT9ZDF6Kt6VbaNgOy4Vz4_iugwVTkJS7Jg04fVLzxsyDyf8Mi0gg1u-swO0nghRNuMq7K-gQN5NWrcwitHhtxN6ZO2LOm6hIKKOYcsnJCCb01yl1kRkqMT0AnUo20vzyIhRPh1aDtA4l7rnD4rz--cLLwH-C-oyNKG0rvxv8iBuT-w" />
+                            <div>
+                                <div
+                                    class="bg-white dark:bg-[#1a202c] p-4 rounded-xl rounded-tl-none border border-gray-100 dark:border-gray-800 shadow-sm">
+                                    <p class="text-sm leading-relaxed">Good morning, Sarah. I've completed the initial
+                                        review of the patent claims for the intellectual property filing. I've attached
+                                        the revised draft for your feedback.</p>
+                                </div>
+                                <span class="text-[10px] text-gray-400 mt-1.5 block font-medium">10:42 AM</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-row-reverse gap-3 max-w-[80%] ml-auto">
+                            <div class="flex flex-col items-end">
+                                <div
+                                    class="bg-primary text-white p-4 rounded-xl rounded-tr-none shadow-md shadow-primary/20">
+                                    <p class="text-sm leading-relaxed">Thank you, Alex. I'll take a look at it right
+                                        away. Do we need to include the technical diagrams from last week's meeting in
+                                        this filing?</p>
+                                </div>
+                                <div class="flex items-center gap-1.5 mt-1.5">
+                                    <span class="text-[10px] text-gray-400 font-medium">10:44 AM</span>
+                                    <span class="material-symbols-outlined text-[14px] text-primary"
+                                        style="font-variation-settings: 'FILL' 1">check_circle</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 max-w-[80%]">
+                            <img alt="Alex Rivera" class="size-8 rounded-full object-cover mt-1 shrink-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxzm8QdcS4czoWbs_px1ItJUpRdlG_9Et4Y4PTwlHpPosa7gZX44mOZ1iVlyoTPkQ4xg7xWZZMJ63MAb_-4PZBb1xqqj-bx3AT9ZDF6Kt6VbaNgOy4Vz4_iugwVTkJS7Jg04fVLzxsyDyf8Mi0gg1u-swO0nghRNuMq7K-gQN5NWrcwitHhtxN6ZO2LOm6hIKKOYcsnJCCb01yl1kRkqMT0AnUo20vzyIhRPh1aDtA4l7rnD4rz--cLLwH-C-oyNKG0rvxv8iBuT-w" />
+                            <div class="flex-1">
+                                <div
+                                    class="bg-white dark:bg-[#1a202c] p-4 rounded-xl rounded-tl-none border border-gray-100 dark:border-gray-800 shadow-sm space-y-3">
+                                    <p class="text-sm leading-relaxed">Yes, I've updated the filing documents for your
+                                        review and added the diagrams in Appendix C.</p>
+                                    <div
+                                        class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-100 dark:border-gray-700/50 cursor-pointer hover:border-primary transition-colors">
+                                        <span
+                                            class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-md">picture_as_pdf</span>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs font-bold truncate">Draft_Patent_V2.pdf</p>
+                                            <p class="text-[10px] text-gray-500">2.4 MB</p>
+                                        </div>
+                                        <span class="material-symbols-outlined text-gray-400">download</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] text-gray-400 mt-1.5 block font-medium">10:45 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-[#1a202c] border-t border-gray-200 dark:border-gray-800">
+                        <div class="flex items-end gap-3 max-w-5xl mx-auto">
+                            <button
+                                class="p-2.5 text-gray-400 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all">
+                                <span class="material-symbols-outlined">attach_file</span>
+                            </button>
+                            <div class="flex-1 relative">
+                                <textarea
+                                    class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 resize-none min-h-[44px] max-h-32"
+                                    placeholder="Type your message to Alex..." rows="1"></textarea>
+                            </div>
+                            <button
+                                class="bg-primary text-white p-2.5 rounded-lg shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center">
+                                <span class="material-symbols-outlined">send</span>
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-center text-gray-400 mt-3 font-medium uppercase tracking-widest">
+                            End-to-end encrypted messaging</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./static/js/client.js"></script>
+</body>
+
+</html>
